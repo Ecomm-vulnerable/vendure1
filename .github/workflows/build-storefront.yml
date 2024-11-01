@@ -15,10 +15,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: cd Storefront && docker build . --file Dockerfile --tag ${{ secrets.AWS.ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS.REGION }}.us-east-1.amazonaws.com/vendure/storefront
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+      run: cd Storefront && docker build . --file Dockerfile --tag $ACCOUNT_ID.dkr.ecr.$REGION.us-east-1.amazonaws.com/vendure/storefront
     - name: login into ECR
-      run: aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin ${{ secrets.AWS.ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS.REGION }}.amazonaws.com
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+      run: aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
     - name: create remote ECR Repository
       run: aws ecr create-repository --repository-name vendure/server
     - name: Transfer container to ECR
-      run: docker push ${{ secrets.AWS.ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS.REGION }}.us-east-1.amazonaws.com/vendure/storefront
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+      run: docker push $ACCOUNT_ID.dkr.ecr.$REGION.us-east-1.amazonaws.com/vendure/storefront
