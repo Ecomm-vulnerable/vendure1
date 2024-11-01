@@ -28,7 +28,7 @@ jobs:
         REGION: ${{ secrets.REGION }}
       run: cd Storefront && docker build . --file Dockerfile --tag $ACCOUNT_ID.dkr.ecr.$REGION.us-east-1.amazonaws.com/vendure/storefront
     - name: create remote ECR Repository
-      run: aws ecr create-repository --repository-name vendure/server
+      run: aws ecr create-repository --repository-name vendure/server || true
     - name: Transfer container to ECR
       env:
         ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
