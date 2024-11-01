@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: cd k8s-Google/Storefront && docker build . --file Dockerfile --tag $ACCOUNT_ID.dkr.ecr.$REGION.us-east-1.amazonaws.com/vendure/storefront
+      run: cd Storefront && docker build . --file Dockerfile --tag $ACCOUNT_ID.dkr.ecr.$REGION.us-east-1.amazonaws.com/vendure/storefront
     - name: login into ECR
       run: aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT)UD.dkr.ecr.$REGION.amazonaws.com
     - name: create remote ECR Repository
