@@ -23,7 +23,7 @@ spec:
               value: "1000"
             - name: Tz
               value: "Etc/CET"
-          image: europe-west1-docker.pkg.dev/mdidedda/vendure/changedetection
+          image: europe-west1-docker.pkg.dev/vendure/changedetection
           name: changedetect
           ports:
             - containerPort: 5000
