@@ -33,4 +33,4 @@ jobs:
       env:
         ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         REGION: ${{ secrets.REGION }}
-      run: docker push $ACCOUNT_ID.dkr.ecr.$REGION.us-east-1.amazonaws.com/vendure/storefront
+      run: docker push $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/storefront
