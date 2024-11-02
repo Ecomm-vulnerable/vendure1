@@ -29,7 +29,7 @@ spec:
               value: shop-api
             - name: SERVER_API_PORT
               value: "3000"
-          image: europe-west1-docker.pkg.dev/mdidedda/vendure/storefront
+          image: europe-west1-docker.pkg.dev/vendure/storefront
           name: storefront
           ports:
             - containerPort: 4000

@@ -1,0 +1,35 @@
+name: CI for Storefront container
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - Storefront/**
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    environment: AWS
+    steps:
+    - uses: actions/checkout@v4
+    - name: login into ECR
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.REGION }}
+      run: aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+    - name: Build the Docker image
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+      run: cd Storefront && docker build . --file Dockerfile --tag $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/storefront
+    - name: create remote ECR Repository
+      run: aws ecr create-repository --repository-name vendure/server || true
+    - name: Transfer container to ECR
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+      run: docker push $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/storefront
