@@ -32,5 +32,5 @@ spec:
                 value: database
               - name: DATABASE_PORT
                 value: "5432"
-            image: {{ACCOUNT_ID}}.dkr.ecr.{{REGION}}.amazonaws.com/vendure/worker
+            image: {{ACCOUNT_ID}}.dkr.ecr.{{REGION}}.amazonaws.com/vendure/server
       restartPolicy: Always
