@@ -28,6 +28,6 @@ jobs:
         ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         REGION: ${{ secrets.REGION }}
       run: |
-        docker pull postgresql
-        docker tag postgresql $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
+        docker pull bitnami/postgresql
+        docker tag bitnami/postgresql $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
         docker push $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
