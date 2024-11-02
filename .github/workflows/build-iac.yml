@@ -31,5 +31,5 @@ jobs:
             aws eks update-kubeconfig --region $REGION --name eks-badapp
             cd k8s-Google
             for items in $(ls); \
-            do cat $items | sed "s/{{ACCOUNT_ID}}/$ACCOUNT_ID/g" | sed "s/{{REGION}}/$REGION/g" | kubectl apply -f - \
+            do cat $items | sed "s/{{ACCOUNT_ID}}/$ACCOUNT_ID/g" | sed "s/{{REGION}}/$REGION/g" | kubectl apply -f -; \
             done
