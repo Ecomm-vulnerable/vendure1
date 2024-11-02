@@ -29,7 +29,7 @@ spec:
               value: shop-api
             - name: SERVER_API_PORT
               value: "3000"
-          image: $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/storefront
+          image: {{ACCOUNT_ID}}.dkr.ecr.{{REGION}}.amazonaws.com/vendure/storefront
           name: storefront
           ports:
             - containerPort: 4000
