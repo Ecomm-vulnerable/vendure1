@@ -1,15 +1,14 @@
-name: Docker Image CI
+name: CI for Storefront container
 
 on:
   push:
-    branches: [ "development" ]
-  pull_request:
-    branches: [ "development" ]
+    branches: [ "master" ]
+    paths:
+      - Storefront/**
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
     environment: AWS
     steps:
