@@ -1,0 +1,25 @@
+name: IAC (Deploy on K8s)
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - k8s-Google/**
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    environment: AWS
+    steps:
+    - uses: actions/checkout@v4
+    - name: login into EKS
+      env:
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        REGION: ${{ secrets.REGION }}
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.REGION }}
+      run: aws eks update-kubeconfig --region $REGION --name eks-badapp
+    - name: update App Infrastructure by applying manifest Yaml files
+      run: cd k8s-Google && kubectl apply -f .

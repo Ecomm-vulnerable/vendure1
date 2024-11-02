@@ -23,7 +23,7 @@ spec:
               value: "1000"
             - name: Tz
               value: "Etc/CET"
-          image: europe-west1-docker.pkg.dev/vendure/changedetection
+          image: $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/changedetection
           name: changedetect
           ports:
             - containerPort: 5000

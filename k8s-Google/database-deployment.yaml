@@ -29,7 +29,7 @@ spec:
               value: vendure
             - name: POSTGRES_PASSWORD
               value: password
-          image: europe-west1-docker.pkg.dev/vendure/sql
+          image: $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
           name: database
           ports:
             - containerPort: 5432
