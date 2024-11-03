@@ -26,7 +26,7 @@ jobs:
         ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         REGION: ${{ secrets.REGION }}
       run: |
-        aws ecr create-repository --repository-name vendure/sql 
+        aws ecr create-repository --repository-name vendure/sql  2>&1
         docker pull bitnami/postgresql
         docker tag bitnami/postgresql $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
         docker push $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
