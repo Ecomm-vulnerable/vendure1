@@ -7,6 +7,8 @@ ARG ZIP_URL=https://github.com/vendure-ecommerce/storefront-angular-starter/arch
 RUN curl "$ZIP_URL" -L -o storefront.zip
 RUN unzip storefront.zip
 RUN cp -a "storefront-angular-starter-$STOREFRONT_VERSION/." .
+RUN sed  "s/localhost/server/g" -i /src/environments/environment.docker.ts   
+RUN sed -i -e 's/production,docker/docker/g' package.json
 RUN yarn
 RUN yarn build:ssr:docker
 CMD ["node", "dist/server/main.js"]
