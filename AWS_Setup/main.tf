@@ -71,7 +71,7 @@ resource "aws_iam_user_policy" "John_policy" {
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "sts:AssumeRole",
-            "Resource": "*"
+            "Resource": aws_iam_role.ecr_user_role.arn  
         }
     ]
   })
