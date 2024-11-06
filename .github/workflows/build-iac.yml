@@ -6,7 +6,7 @@ on:
     paths:
       - k8s-Google/**
       - .github/workflows/build-iac.yml
-
+  workflow_dispatch:
 jobs:
 
   build:
