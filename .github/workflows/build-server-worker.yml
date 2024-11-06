@@ -1,4 +1,4 @@
-name: CI for Storefront container
+name: CI for Server & Worker
 
 on:
   push:
