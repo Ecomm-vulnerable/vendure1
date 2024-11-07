@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
     paths:
       - Storefront/**
-
+  workflow_dispatch:
 jobs:
 
   build:
