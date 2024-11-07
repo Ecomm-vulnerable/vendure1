@@ -29,6 +29,6 @@ jobs:
             --output text))
           aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
           aws ecr create-repository --repository-name vendure/sql  2>&1 || true
-          docker pull bitnami/postgresql
-          docker tag bitnami/postgresql $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
+          docker pull bitnami/postgresql:9.4.6
+          docker tag bitnami/postgresql:9.4.6 $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
           docker push $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/vendure/sql
