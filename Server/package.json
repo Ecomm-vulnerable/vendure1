@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "2.1.9",
-    "@vendure/asset-server-plugin": "2.1.9",
+    "@vendure/asset-server-plugin": "^2.3.3",
     "@vendure/core": "2.1.9",
     "@vendure/email-plugin": "2.1.9",
     "dotenv": "16.4.5",
